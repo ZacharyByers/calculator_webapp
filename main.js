@@ -4,9 +4,9 @@ function evaluate(nums, ops) {
   var i = 1
   var j = 2
   while (i < ops.length) {
-    total = do_math[ops[i]](numbers[j], numbers[j+1])
-    i ++
-    j += 2
+    total = do_math[ops[i]](total, numbers[j])
+    i++
+    j++
   }
   return total
 }
@@ -20,7 +20,7 @@ var do_math = {
 var $buttons = $('.btn')
 var $outputField = $('#output')
 
-var number = ''
+var number = '0'
 var operands = []
 var operators = []
 var total = 0
@@ -32,7 +32,7 @@ $buttons.on('click', function() {
   } else if ($(this).hasClass('op')) {
     $outputField.append(' ' + $(this).text() + ' ')
     operands.push(number)
-    number = ''
+    number = '0'
     operators.push($(this).text())
   } else if ($(this).hasClass('eq')) {
     operands.push(number)
@@ -42,7 +42,7 @@ $buttons.on('click', function() {
     operands = []
     operators = []
   } else if ($(this).hasClass('clear')) {
-    number = ''
+    number = '0'
     operands = []
     operators = []
     total = 0
